@@ -19,7 +19,7 @@ ALL_COUNTRIES = sorted(list(set(DEVELOPED + DEVELOPING + FAST_GROWING + POLICY_C
 COUNTRY_GROUPS = {}
 for c in ALL_COUNTRIES:
     if c in DEVELOPED: COUNTRY_GROUPS[c] = 'Developed'
-    elif c in FAST_GROWING: COUNTRY_GROUPS[c] = 'Fast_Growing' # Priority over Developing
+    elif c in FAST_GROWING: COUNTRY_GROUPS[c] = 'Fast_Growing'
     elif c in DEVELOPING: COUNTRY_GROUPS[c] = 'Emerging'
     else: COUNTRY_GROUPS[c] = 'Policy_Comp'
 
@@ -33,63 +33,45 @@ END_YEAR = 2023
 # 3. WDI VARIABLE MAPPINGS (Code -> Clean Name)
 # ============================================================================
 WDI_VARIABLES = {
-    # OUTCOMES
-    'NY.GDP.MKTP.KD.ZG': 'GDP_Growth',
-    'FP.CPI.TOTL.ZG': 'CPI_Inflation',
+    # --- 1. Outcomes (Bağımlı Değişkenler) ---
+    'NY.GDP.MKTP.KD.ZG': 'GDP_Growth_Pct',
+    'FP.CPI.TOTL.ZG': 'Inflation_Consumer_Prices_Pct',
 
-    # GREEN TRANSITION
+    # --- 2. Green Transition (Yeşil Dönüşüm) ---
     'EG.FEC.RNEW.ZS': 'Renewable_Energy_Consumption_Pct',
     'EG.ELC.RNEW.ZS': 'Renewable_Electricity_Output_Pct',
+    'EG.ELC.RNWX.ZS': 'Renewable_Electricity_NoHydro_Pct', # Hidro hariç (Önemli)
     'EG.USE.COMM.FO.ZS': 'Fossil_Fuel_Consumption_Pct',
     'EG.USE.COMM.CL.ZS': 'Alternative_Nuclear_Energy_Pct',
 
-    # ENERGY EFFICIENCY & DEPENDENCE
+    # --- 3. Energy Efficiency & Dependence ---
     'EG.USE.PCAP.KG.OE': 'Energy_Use_Per_Capita',
-    'EG.EGY.PRIM.PP.KD': 'Energy_Intensity',
-    'EG.IMP.CONS.ZS': 'Net_Energy_Imports_Pct',
+    'EG.EGY.PRIM.PP.KD': 'Energy_Intensity_Level_Primary', # Verimlilik göstergesi
+    'EG.IMP.CONS.ZS': 'Energy_Imports_Net_Pct',
+    'TM.VAL.FUEL.ZS.UN': 'Fuel_Imports_Pct_Merchandise',
 
-    # MACRO & FINANCIAL
-    'NY.GDP.PCAP.KD': 'GDP_Per_Capita', # Constant 2015 US$
+    # --- 4. Macro & Financial ---
+    'NY.GDP.PCAP.PP.KD': 'GDP_Per_Capita_PPP', # Satınalma gücü paritesiyle
     'FM.LBL.BMNY.GD.ZS': 'Broad_Money_Pct_GDP',
-    'FS.AST.DOMS.GD.ZS': 'Domestic_Credit_Pct_GDP',
+    'FD.AST.PRVT.GD.ZS': 'Domestic_Credit_Private_Pct_GDP',
     'NE.TRD.GNFS.ZS': 'Trade_Pct_GDP',
-    'BX.KLT.DINV.WD.GD.ZS': 'FDI_Net_Inflows_Pct_GDP',
+    'BN.CAB.XOKA.GD.ZS': 'Current_Account_Balance_Pct_GDP',
 
-    # FISCAL & GOV
+    # --- 5. Exchange Rate & Prices ---
+    'PX.REX.REER': 'Real_Effective_Exchange_Rate', # Rekabetçilik ve Enflasyon geçişkenliği için
+
+    # --- 6. Government & Investment ---
     'NE.CON.GOVT.ZS': 'Gov_Expenditure_Pct_GDP',
-    'NE.GDI.FTOT.ZS': 'Gross_Fixed_Capital_Formation_Pct_GDP',
+    'NE.GDI.FTOT.ZS': 'Gross_Fixed_Capital_Formation_Pct_GDP', # Yatırımlar
 
-    # ---- CARBON & EMISSIONS (Commented out to prevent crashes) ----
-    # 'EN.GHG.CO2.PC.CE.AR5': 'CO2_Emissions_Per_Capita',
-    # 'EN.ATM.CO2E.KT': 'CO2_Emissions_Total',
-    # 'EN.ATM.CO2E.PP.GD': 'CO2_Intensity_GDP',
+    # --- 7. Carbon & Emissions ---
+    'EN.ATM.CO2E.PP.GD.KD': 'Carbon_Intensity_GDP', # GSYH başına emisyon
+    'EN.ATM.CO2E.PC': 'CO2_Emissions_Per_Capita',
 }
 
 # ============================================================================
-# 4. ANALYSIS FEATURES lists
-# ============================================================================
-# This is the list your clustering code uses.
-# I removed CO2 and ensured Fossil_Fuel_Consumption_Pct is here.
-features_cluster = [
-    'GDP_Growth',
-    'FDI_Net_Inflows_Pct_GDP',
-    'Energy_Intensity',
-    'Renewable_Electricity_Output_Pct',
-    'Renewable_Energy_Consumption_Pct',
-    'Net_Energy_Imports_Pct',
-    'Alternative_Nuclear_Energy_Pct',
-    'Fossil_Fuel_Consumption_Pct', # <--- Proxy for CO2
-    'Broad_Money_Pct_GDP',
-    'CPI_Inflation',
-    'Domestic_Credit_Pct_GDP',
-    'Gov_Expenditure_Pct_GDP',
-    'Gross_Fixed_Capital_Formation_Pct_GDP',
-    'Trade_Pct_GDP'
-]
-
-# ============================================================================
-# 5. PATHS
+# 4. PATHS
 # ============================================================================
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW_DATA_PATH = os.path.join(BASE_DIR, 'data', 'raw', 'wdi_data.csv')
+RAW_DATA_PATH = os.path.join(BASE_DIR, 'data', 'raw', 'wb_raw.csv')
 PROCESSED_DATA_PATH = os.path.join(BASE_DIR, 'data', 'processed', 'analysis_ready.csv')
