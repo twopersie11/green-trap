@@ -1,66 +1,55 @@
-"""Lightweight feature engineering for WDI data."""
-
-from __future__ import annotations
-
-from pathlib import Path
-
 import pandas as pd
-
+import numpy as np
 from . import config
 
+def clean_and_feature_engineer():
+    df = pd.read_csv(config.RAW_DATA_PATH)
+    
+    # 1. Sort for time-series operations
+    df = df.sort_values(['Country_Code', 'Year'])
+    
+    # 2. Add Country Group metadata
+    df['Region_Group'] = df['Country_Code'].map(config.COUNTRY_GROUPS)
+    
+    # 3. Missing Value Handling
+    # Strategy: Linear Interpolation for gaps inside a series, 
+    # then Backfill/Forwardfill for edges.
+    numeric_cols = [c for c in df.columns if c not in ['Country_Code', 'Year', 'Region_Group']]
+    
+    print(f"Missing values before cleaning: {df[numeric_cols].isna().sum().sum()}")
+    
+    # Group by country to avoid interpolating between e.g., Turkey and USA
+    df[numeric_cols] = df.groupby('Country_Code')[numeric_cols].transform(
+        lambda group: group.interpolate(method='linear').bfill().ffill()
+    )
+    
+    # 4. Feature Engineering
+    
+    # A. Log Transforms (for skewed variables)
+    for col in ['GDP_Per_Capita', 'CO2_Emissions_Total', 'Energy_Use_Per_Capita']:
+        if col in df.columns:
+            df[f'Log_{col}'] = np.log1p(df[col])
 
-def load_raw_data(path: str | Path = config.RAW_DATA_PATH) -> pd.DataFrame:
-    """Load raw WDI data from CSV."""
-
-    return pd.read_csv(path)
-
-
-def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Create a basic feature set ready for modeling.
-
-    - Forward-fills indicator values by economy and sorts by year.
-    - Drops rows that remain entirely empty after filling.
-    - Adds a simple growth-rate proxy for GDP per capita when available.
-    """
-
-    df = df.copy()
-    df = df.sort_values(["economy_code", "year"])
-    numeric_cols = [col for col in df.columns if col not in {"economy", "economy_code", "year"}]
-    df[numeric_cols] = df.groupby("economy_code")[numeric_cols].ffill()
-
-    # Example derived feature
-    if "NY.GDP.PCAP.KD" in numeric_cols:
-        df["gdp_per_capita_growth"] = df.groupby("economy_code")["NY.GDP.PCAP.KD"].pct_change()
-
-    df = df.dropna(how="all", subset=numeric_cols)
+    # B. Lagged Variables (t-1)
+    # Important for "Granger causality" style logic: 
+    # Does LAST year's green energy affect THIS year's inflation?
+    lag_cols = ['Renewable_Energy_Consumption_Pct', 'Broad_Money_Pct_GDP', 'Energy_Intensity']
+    for col in lag_cols:
+        if col in df.columns:
+            df[f'{col}_Lag1'] = df.groupby('Country_Code')[col].shift(1)
+            
+    # 5. Final Cleanup
+    # Drop rows created by shifting (first year will be NaN for lags)
+    df = df.dropna()
+    
+    print(f"Final shape: {df.shape}")
+    
+    # Save
+    import os
+    os.makedirs(os.path.dirname(config.PROCESSED_DATA_PATH), exist_ok=True)
+    df.to_csv(config.PROCESSED_DATA_PATH, index=False)
+    print(f"Saved processed data to {config.PROCESSED_DATA_PATH}")
     return df
 
-
-def summarize_features(df: pd.DataFrame) -> pd.DataFrame:
-    """Produce simple summary statistics for the engineered features."""
-
-    numeric_cols = [col for col in df.columns if df[col].dtype != object]
-    summary = df[numeric_cols].describe().transpose().reset_index().rename(columns={"index": "feature"})
-    return summary
-
-
-def save_features(features: pd.DataFrame, summary: pd.DataFrame) -> None:
-    """Persist engineered features and their summary to disk."""
-
-    features_path = Path(config.FEATURES_PATH)
-    features_path.parent.mkdir(parents=True, exist_ok=True)
-    features.to_csv(features_path, index=False)
-
-    summary_path = Path(config.FEATURE_SUMMARY_PATH)
-    summary_path.parent.mkdir(parents=True, exist_ok=True)
-    summary.to_csv(summary_path, index=False)
-
-
 if __name__ == "__main__":
-    raw_df = load_raw_data()
-    features_df = engineer_features(raw_df)
-    feature_summary_df = summarize_features(features_df)
-    save_features(features_df, feature_summary_df)
-    print(
-        f"Saved engineered features to {config.FEATURES_PATH} and summary to {config.FEATURE_SUMMARY_PATH}."
-    )
+    clean_and_feature_engineer()
