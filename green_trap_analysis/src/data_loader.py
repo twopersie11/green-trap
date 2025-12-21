@@ -38,16 +38,18 @@ def fetch_data_chunked(chunk_years=5, use_cache=True):
 
     # Check cache first
     if use_cache and os.path.exists(config.CACHE_PATH):
-        cache_age_hours = (datetime.now() - datetime.fromtimestamp(
-            os.path.getmtime(config.CACHE_PATH)
-        )).total_seconds() / 3600
+        try:
+            cache_mtime = os.path.getmtime(config.CACHE_PATH)
+            cache_age_hours = (datetime.now() - datetime.fromtimestamp(cache_mtime)).total_seconds() / 3600
 
-        if cache_age_hours < 24:  # Cache valid for 24 hours
-            logger.info(f"📦 Loading from cache (age: {cache_age_hours:.1f} hours)")
-            with open(config.CACHE_PATH, 'rb') as f:
-                return pickle.load(f)
-        else:
-            logger.info("⏰ Cache expired, fetching new data...")
+            if cache_age_hours < 24:  # Cache valid for 24 hours
+                logger.info(f"📦 Loading from cache (age: {cache_age_hours:.1f} hours)")
+                with open(config.CACHE_PATH, 'rb') as f:
+                    return pickle.load(f)
+            else:
+                logger.info("⏰ Cache expired, fetching new data...")
+        except Exception as e:
+            logger.warning(f"⚠️ Could not read cache: {e}. Fetching fresh data.")
 
     # Prepare fetch
     indicator_codes = list(config.WDI_VARIABLES.keys())
@@ -68,7 +70,10 @@ def fetch_data_chunked(chunk_years=5, use_cache=True):
 
     for i in range(0, len(years), chunk_years):
         chunk_start = years[i]
-        chunk_end = min(years[i + chunk_years - 1], config.END_YEAR)
+
+        # FIX 1: Safely calculate the index of the last year in this chunk
+        end_idx = min(i + chunk_years - 1, len(years) - 1)
+        chunk_end = years[end_idx]
 
         logger.info(f"Fetching years {chunk_start}-{chunk_end}...")
 
@@ -82,8 +87,22 @@ def fetch_data_chunked(chunk_years=5, use_cache=True):
             )
 
             if not chunk_df.empty:
-                all_chunks.append(chunk_df)
-                logger.info(f"  ✅ Success: {chunk_df.shape[0]} observations")
+                # FIX 2: Melt IMMEDIATELY to avoid NaN duplicates during concat
+                # Reset index to make 'economy' and 'series' columns
+                chunk_df = chunk_df.reset_index()
+
+                # Melt into long format: Country, Series, Year, Value
+                chunk_melted = chunk_df.melt(
+                    id_vars=['economy', 'series'],
+                    var_name='Year',
+                    value_name='Value'
+                )
+
+                # Ensure Year is numeric
+                chunk_melted['Year'] = pd.to_numeric(chunk_melted['Year'])
+
+                all_chunks.append(chunk_melted)
+                logger.info(f"  ✅ Success: {chunk_df.shape[0]} series fetched")
             else:
                 logger.warning(f"  ⚠️ Empty response for {chunk_start}-{chunk_end}")
 
@@ -95,27 +114,13 @@ def fetch_data_chunked(chunk_years=5, use_cache=True):
         logger.error("💥 CRITICAL: No data fetched from any chunk!")
         return pd.DataFrame()
 
-    # Combine chunks
+    # Combine chunks (Concatenating Long DataFrames is safe)
     logger.info("\n🔄 Combining chunks...")
-    raw_df = pd.concat(all_chunks, axis=0)
+    df_long = pd.concat(all_chunks, axis=0)
 
-    # Reshape: Wide -> Long -> Wide (to clean format)
+    # Pivot to Wide format: Index=(Country, Year), Columns=Series
     logger.info("🔄 Reshaping data...")
-    df = raw_df.reset_index()
-
-    # Identify year columns
-    year_cols = [c for c in df.columns if isinstance(c, int)]
-
-    # Melt
-    df_melted = df.melt(
-        id_vars=['economy', 'series'],
-        value_vars=year_cols,
-        var_name='Year',
-        value_name='Value'
-    )
-
-    # Pivot
-    df_pivoted = df_melted.pivot(
+    df_pivoted = df_long.pivot(
         index=['economy', 'Year'],
         columns='series',
         values='Value'
