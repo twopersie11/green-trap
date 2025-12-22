@@ -79,7 +79,7 @@ PERIOD_LABELS = {
 }
 
 # ============================================================================
-# 3. COMPREHENSIVE WDI VARIABLE MAPPINGS
+# 3. COMPREHENSIVE WDI VARIABLE MAPPINGS (ENHANCED)
 # ============================================================================
 WDI_VARIABLES = {
     # ========================================================================
@@ -160,12 +160,21 @@ WDI_VARIABLES = {
     'EN.ATM.GHGT.ZG': 'GHG_Emissions_Growth_Pct',                # Emissions growth
 
     # ========================================================================
-    # STRUCTURAL & DEVELOPMENT
+    # STRUCTURAL & DEVELOPMENT (NEWLY ADDED)
     # ========================================================================
-    'NV.IND.MANF.ZS': 'Manufacturing_Value_Added_Pct_GDP',       # Industrial structure
+    'NV.IND.TOTL.ZS': 'Industry_Value_Added_Pct_GDP',           # Industrial structure (ADDED)
+    'NV.IND.MANF.ZS': 'Manufacturing_Value_Added_Pct_GDP',       # Manufacturing share
     'NV.AGR.TOTL.ZS': 'Agriculture_Value_Added_Pct_GDP',         # Agricultural share
+    'SP.URB.TOTL.IN.ZS': 'Urban_Population_Pct',                # Urbanization (ADDED)
     'SI.POV.GINI': 'Gini_Index',                                 # Inequality
     'SL.UEM.TOTL.ZS': 'Unemployment_Rate_Pct',                   # Labor market
+
+    # ========================================================================
+    # ENERGY PRICE PROXIES (NEWLY ADDED)
+    # ========================================================================
+    'FP.CPI.TOTL': 'CPI_Index',                                  # For energy inflation calculation
+    'EP.PMP.DESL.CD': 'Diesel_Price_USD_Per_Liter',             # Diesel price (energy proxy)
+    'EP.PMP.SGAS.CD': 'Gasoline_Price_USD_Per_Liter',           # Gasoline price (energy proxy)
 }
 
 # ============================================================================
@@ -222,7 +231,9 @@ FORWARD_FILL_OK = [
     'Fossil_Fuel_Consumption_Pct',
     'Energy_Intensity_Primary_MJ_Per_GDP',
     'Population_Total',
-    'Manufacturing_Value_Added_Pct_GDP'
+    'Manufacturing_Value_Added_Pct_GDP',
+    'Industry_Value_Added_Pct_GDP',  # ADDED
+    'Urban_Population_Pct'  # ADDED
 ]
 
 # ============================================================================

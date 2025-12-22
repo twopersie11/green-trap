@@ -2,9 +2,9 @@
 DATA QUALITY REPORT - GREEN TRAP ANALYSIS
 ======================================================================
 
-Generated: 2025-12-18 21:21:32
+Generated: 2025-12-22 11:11:28
 
-Dataset shape: 792 rows × 38 columns
+Dataset shape: 792 rows × 41 columns
 Countries: 33
 Years: 2000 - 2023
 
@@ -33,19 +33,19 @@ Top 20 variables with missing data:
   Broad_Money_Pct_GDP                          :  25.1% (   199 obs)
   Real_Effective_Exchange_Rate_Index           :  18.4% (   146 obs)
   Tax_Revenue_Pct_GDP                          :  15.0% (   119 obs)
-  Renewable_Electricity_Output_Pct             :   8.3% (    66 obs)
   Renewable_Electricity_NoHydro_Pct            :   8.3% (    66 obs)
   Renewable_Energy_Consumption_Pct             :   8.3% (    66 obs)
+  Renewable_Electricity_Output_Pct             :   8.3% (    66 obs)
   Energy_Intensity_Primary_MJ_Per_GDP          :   5.6% (    44 obs)
   Domestic_Credit_Private_Pct_GDP              :   4.5% (    36 obs)
   Manufacturing_Value_Added_Pct_GDP            :   2.0% (    16 obs)
   Fuel_Imports_Pct_Merchandise                 :   1.0% (     8 obs)
   Fossil_Fuel_Consumption_Pct                  :   0.9% (     7 obs)
-  Energy_Use_Per_Capita_KgOE                   :   0.8% (     6 obs)
-  Electric_Power_Consumption_Per_Capita        :   0.8% (     6 obs)
   Energy_Imports_Net_Pct                       :   0.8% (     6 obs)
-  Energy_Use_Per_GDP_PPP                       :   0.8% (     6 obs)
+  Energy_Use_Per_Capita_KgOE                   :   0.8% (     6 obs)
   Alternative_Nuclear_Energy_Pct               :   0.8% (     6 obs)
+  Energy_Use_Per_GDP_PPP                       :   0.8% (     6 obs)
+  Electric_Power_Consumption_Per_Capita        :   0.8% (     6 obs)
 
 ======================================================================
 COUNTRY COVERAGE
@@ -53,17 +53,17 @@ COUNTRY COVERAGE
 
 Observations per country (top 15):
   AUS (Energy_Dependent    ):  24 years
-  MEX (Turkey_Peers        ):  24 years
-  VNM (Fast_Growing        ):  24 years
-  USA (Other_Advanced      ):  24 years
-  TUR (Turkey_Focus        ):  24 years
-  THA (Turkey_Peers        ):  24 years
-  SWE (Green_Leaders       ):  24 years
-  SAU (Energy_Dependent    ):  24 years
-  RUS (Energy_Dependent    ):  24 years
-  PRT (Southern_Europe     ):  24 years
-  POL (Turkey_Peers        ):  24 years
-  PHL (Fast_Growing        ):  24 years
-  NZL (Other_Advanced      ):  24 years
-  NOR (Green_Leaders       ):  24 years
-  NLD (Green_Leaders       ):  24 years
+  BGD (Fast_Growing        ):  24 years
+  BRA (Other_Advanced      ):  24 years
+  CAN (Energy_Dependent    ):  24 years
+  CHL (Other_Advanced      ):  24 years
+  CHN (Fast_Growing        ):  24 years
+  DEU (Green_Leaders       ):  24 years
+  DNK (Green_Leaders       ):  24 years
+  ESP (Southern_Europe     ):  24 years
+  FRA (Other_Advanced      ):  24 years
+  GBR (Other_Advanced      ):  24 years
+  GRC (Southern_Europe     ):  24 years
+  IDN (Asian_Emerging      ):  24 years
+  IND (Fast_Growing        ):  24 years
+  ITA (Southern_Europe     ):  24 years
