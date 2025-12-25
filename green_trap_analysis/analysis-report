@@ -1,0 +1,159 @@
+✅ Enhanced Analysis Ready!
+
+================================================================================
+📊 LOADING DATA
+================================================================================
+✅ Data Loaded: 792 rows, 69 columns
+✅ Panel index set successfully.
+
+================================================================================
+📈 PART 1: DESCRIPTIVE ANALYSIS
+================================================================================
+
+================================================================================
+🧩 PART 2: ENHANCED CLUSTERING ANALYSIS
+================================================================================
+
+2A. K-Means Clustering (Recent Period: 2018-2023)...
+   ✅ Optimal K (Recent): 6
+
+2B. K-Means Clustering (Early Period: 2000-2005)...
+
+   Countries with cluster changes: 30
+
+2C. Hierarchical Clustering...
+🇹🇷 Turkey is in Cluster 2: LowRenew_HighInfl
+
+================================================================================
+🌲 PART 3: ENHANCED MACHINE LEARNING
+================================================================================
+
+3A. Random Forest: Inflation Drivers...
+🇹🇷 Turkey is in Cluster 2: LowRenew_HighInfl
+
+================================================================================
+🌲 PART 3: ENHANCED MACHINE LEARNING
+================================================================================
+
+3A. Random Forest: Inflation Drivers...
+
+3B. Random Forest: GDP Growth Drivers...
+🇹🇷 Turkey is in Cluster 2: LowRenew_HighInfl
+
+================================================================================
+🌲 PART 3: ENHANCED MACHINE LEARNING
+================================================================================
+
+3A. Random Forest: Inflation Drivers...
+
+3B. Random Forest: GDP Growth Drivers...
+
+Top 5 Inflation Drivers:
+Real_Interest_Rate_Pct                0.195903
+Broad_Money_Growth_Pct                0.153498
+Real_Effective_Exchange_Rate_Index    0.148711
+Urban_Population_Pct                  0.078289
+Energy_Imports_Net_Pct                0.068273
+dtype: float64
+
+Top 5 Growth Drivers:
+Industry_Value_Added_Pct_GDP           0.234362
+Urban_Population_Pct                   0.214590
+Energy_Intensity_Primary_MJ_Per_GDP    0.090218
+Broad_Money_Growth_Pct                 0.088525
+Real_Interest_Rate_Pct                 0.085258
+dtype: float64
+
+================================================================================
+📉 PART 4: PANEL REGRESSION ANALYSIS
+================================================================================
+
+4A. Panel Regression: Inflation (with lagged renewable)
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:      Inflation_CPI_Pct   R-squared:                        0.1321
+Estimator:                   PanelOLS   R-squared (Between):              0.5788
+No. Observations:                 564   R-squared (Within):               0.1075
+Date:                Mon, Dec 22 2025   R-squared (Overall):              0.3982
+Time:                        12:09:22   Log-likelihood                   -1543.1
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      15.552
+Entities:                          26   P-value                           0.0000
+Avg Obs:                       21.692   Distribution:                   F(5,511)
+Min Obs:                       8.0000                                           
+Max Obs:                       23.000   F-statistic (robust):             1.2737
+                                        P-value                           0.2739
+Time periods:                      23   Distribution:                   F(5,511)
+Avg Obs:                       24.522                                           
+Min Obs:                       18.000                                           
+Max Obs:                       26.000                                           
+                                                                                
+                                           Parameter Estimates                                           
+=========================================================================================================
+                                       Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+---------------------------------------------------------------------------------------------------------
+Renewable_Energy_Consumption_Pct          0.2538     0.1266     2.0045     0.0455      0.0050      0.5026
+Renewable_Energy_Consumption_Pct_Lag1    -0.2322     0.1367    -1.6989     0.0899     -0.5008      0.0363
+Energy_Imports_Net_Pct                    0.0077     0.0064     1.2201     0.2230     -0.0047      0.0202
+Broad_Money_Growth_Pct                    0.1634     0.1281     1.2764     0.2024     -0.0881      0.4150
+Current_Account_Balance_Pct_GDP           0.0187     0.0475     0.3933     0.6943     -0.0746      0.1119
+=========================================================================================================
+
+F-test for Poolability: 7.3095
+P-value: 0.0000
+Distribution: F(47,511)
+
+Included effects: Entity, Time
+
+
+4B. Panel Regression: GDP Growth
+                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:         GDP_Growth_Pct   R-squared:                        0.0867
+Estimator:                   PanelOLS   R-squared (Between):             -1.2220
+No. Observations:                 786   R-squared (Within):               0.0412
+Date:                Mon, Dec 22 2025   R-squared (Overall):             -0.7563
+Time:                        12:09:22   Log-likelihood                   -1604.4
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      13.761
+Entities:                          33   P-value                           0.0000
+Avg Obs:                       23.818   Distribution:                   F(5,725)
+Min Obs:                       23.000                                           
+Max Obs:                       24.000   F-statistic (robust):             4.6717
+                                        P-value                           0.0003
+Time periods:                      24   Distribution:                   F(5,725)
+Avg Obs:                       32.750                                           
+Min Obs:                       27.000                                           
+Max Obs:                       33.000                                           
+                                                                                
+                                           Parameter Estimates                                           
+=========================================================================================================
+                                       Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+---------------------------------------------------------------------------------------------------------
+Renewable_Energy_Consumption_Pct          0.0339     0.0224     1.5115     0.1311     -0.0101      0.0779
+Energy_Imports_Net_Pct                 -7.72e-05     0.0032    -0.0242     0.9807     -0.0063      0.0062
+Gross_Fixed_Capital_Formation_Pct_GDP     0.2209     0.0510     4.3294     0.0000      0.1207      0.3210
+Trade_Pct_GDP                             0.0354     0.0155     2.2851     0.0226      0.0050      0.0658
+Inflation_CPI_Pct                        -0.0437     0.0153    -2.8546     0.0044     -0.0738     -0.0137
+=========================================================================================================
+
+F-test for Poolability: 20.401
+P-value: 0.0000
+Distribution: F(55,725)
+
+Included effects: Entity, Time
+
+================================================================================
+📊 PART 5: ADDITIONAL VISUALIZATIONS
+================================================================================
+
+5A. Correlation Matrix Heatmap...
+
+✅ ENHANCED ANALYSIS COMPLETE
+================================================================================
+
+Key Findings:
+1. Clustering reveals distinct country groups with Turkey in a unique position
+2. Random Forest shows energy factors are important but not dominant for inflation
+3. Panel regressions suggest complex, non-linear relationships
+4. Visual evidence of green transition challenges varies by country group
