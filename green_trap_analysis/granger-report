@@ -1,0 +1,293 @@
+================================================================================
+🔍 GRANGER CAUSALITY ANALYSIS
+================================================================================
+
+Research Question: Does renewable energy adoption predict inflation?
+Or does inflation predict renewable adoption?
+================================================================================================================================================================
+🔍 GRANGER CAUSALITY ANALYSIS
+================================================================================
+
+Research Question: Does renewable energy adoption predict inflation?
+Or does inflation predict renewable adoption?
+================================================================================
+
+✅ Data loaded: (792, 69)
+
+================================================================================
+TESTING: Renewable → Inflation
+================================================================================
+
+============================================================
+Country: Turkey (Emerging, High Import Dep.) (TUR)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.2118 
+  Lag 2: p-value = 0.4999 
+  Lag 3: p-value = 0.3957 
+  Lag 4: p-value = 0.3606 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.2119 
+  Lag 2: p-value = 0.0247 **
+  Lag 3: p-value = 0.0388 **
+  Lag 4: p-value = 0.0866 *
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✓ Inflation changes PREDICT renewable adoption (p < 0.05)
+
+============================================================
+Country: Poland (Turkey Peer) (POL)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.0508 *
+  Lag 2: p-value = 0.1012 
+  Lag 3: p-value = 0.2305 
+  Lag 4: p-value = 0.4194 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.9757 
+  Lag 2: p-value = 0.4261 
+  Lag 3: p-value = 0.4927 
+  Lag 4: p-value = 0.6860 
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✗ No evidence that inflation predicts renewable adoption
+  ℹ️  No clear causal relationship found
+
+============================================================
+Country: Germany (Green Leader) (DEU)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.2136 
+  Lag 2: p-value = 0.5438 
+  Lag 3: p-value = 0.7731 
+  Lag 4: p-value = 0.6011 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.6806 
+  Lag 2: p-value = 0.8975 
+  Lag 3: p-value = 0.7131 
+  Lag 4: p-value = 0.6163 
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✗ No evidence that inflation predicts renewable adoption
+  ℹ️  No clear causal relationship found
+
+============================================================
+Country: USA (Advanced) (USA)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.3792 
+  Lag 2: p-value = 0.8172 
+  Lag 3: p-value = 0.5158 
+  Lag 4: p-value = 0.2892 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.3170 
+  Lag 2: p-value = 0.2915 
+  Lag 3: p-value = 0.4763 
+  Lag 4: p-value = 0.3211 
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✗ No evidence that inflation predicts renewable adoption
+  ℹ️  No clear causal relationship found
+
+============================================================
+Country: Mexico (Peer) (MEX)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------================================================================================
+🔍 GRANGER CAUSALITY ANALYSIS
+================================================================================
+
+Research Question: Does renewable energy adoption predict inflation?
+Or does inflation predict renewable adoption?
+================================================================================
+
+✅ Data loaded: (792, 69)
+
+================================================================================
+TESTING: Renewable → Inflation
+================================================================================
+
+============================================================
+Country: Turkey (Emerging, High Import Dep.) (TUR)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.2118 
+  Lag 2: p-value = 0.4999 
+  Lag 3: p-value = 0.3957 
+  Lag 4: p-value = 0.3606 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.2119 
+  Lag 2: p-value = 0.0247 **
+  Lag 3: p-value = 0.0388 **
+  Lag 4: p-value = 0.0866 *
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✓ Inflation changes PREDICT renewable adoption (p < 0.05)
+
+============================================================
+Country: Poland (Turkey Peer) (POL)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.0508 *
+  Lag 2: p-value = 0.1012 
+  Lag 3: p-value = 0.2305 
+  Lag 4: p-value = 0.4194 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.9757 
+  Lag 2: p-value = 0.4261 
+  Lag 3: p-value = 0.4927 
+  Lag 4: p-value = 0.6860 
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✗ No evidence that inflation predicts renewable adoption
+  ℹ️  No clear causal relationship found
+
+============================================================
+Country: Germany (Green Leader) (DEU)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.2136 
+  Lag 2: p-value = 0.5438 
+  Lag 3: p-value = 0.7731 
+  Lag 4: p-value = 0.6011 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.6806 
+  Lag 2: p-value = 0.8975 
+  Lag 3: p-value = 0.7131 
+  Lag 4: p-value = 0.6163 
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✗ No evidence that inflation predicts renewable adoption
+  ℹ️  No clear causal relationship found
+
+============================================================
+Country: USA (Advanced) (USA)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.3792 
+  Lag 2: p-value = 0.8172 
+  Lag 3: p-value = 0.5158 
+  Lag 4: p-value = 0.2892 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.3170 
+  Lag 2: p-value = 0.2915 
+  Lag 3: p-value = 0.4763 
+  Lag 4: p-value = 0.3211 
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✗ No evidence that inflation predicts renewable adoption
+  ℹ️  No clear causal relationship found
+
+============================================================
+Country: Mexico (Peer) (MEX)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.0125 **
+  Lag 2: p-value = 0.0240 **
+  Lag 3: p-value = 0.0740 *
+  Lag 4: p-value = 0.1773 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.0288 **
+  Lag 2: p-value = 0.3562 
+  Lag 3: p-value = 0.6855 
+  Lag 4: p-value = 0.6419 
+
+📌 INTERPRETATION:
+  ✓ Renewable energy changes PREDICT inflation (p < 0.05)
+  ✓ Inflation changes PREDICT renewable adoption (p < 0.05)
+  ⚠️  BIDIRECTIONAL causality detected!
+
+============================================================
+Country: Denmark (Green Leader) (DNK)
+============================================================
+✓ Using 24 observations from 2000 to 2023
+
+📊 TEST 1: Renewable Energy → Inflation
+--------------------------------------------------
+  Lag 1: p-value = 0.7173 
+  Lag 2: p-value = 0.6278 
+  Lag 3: p-value = 0.7984 
+  Lag 4: p-value = 0.9390 
+
+📊 TEST 2: Inflation → Renewable Energy
+--------------------------------------------------
+  Lag 1: p-value = 0.2206 
+  Lag 2: p-value = 0.1804 
+  Lag 3: p-value = 0.1645 
+  Lag 4: p-value = 0.2953 
+
+📌 INTERPRETATION:
+  ✗ No evidence that renewable energy predicts inflation
+  ✗ No evidence that inflation predicts renewable adoption
+  ℹ️  No clear causal relationship found
+
+
+================================================================================
+📊 SUMMARY OF GRANGER CAUSALITY TESTS
+================================================================================
+
+Country                        Country_Name  Renewable→Inflation_MinP  Inflation→Renewable_MinP  Renewable→Inflation_Sig  Inflation→Renewable_Sig
+    TUR Turkey (Emerging, High Import Dep.)                  0.211827                  0.024659                    False                     True
+    POL                Poland (Turkey Peer)                  0.050786                  0.426078                    False                    False
+    DEU              Germany (Green Leader)                  0.213587                  0.616303                    False                    False
+    USA                      USA (Advanced)                  0.289195                  0.291507                    False                    False
+    MEX                       Mexico (Peer)                  0.012537                  0.028796                     True                     True
+    DNK              Denmark (Green Leader)                  0.627802                  0.164503                    False                    False
+    
+    
+    
